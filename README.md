@@ -1,8 +1,90 @@
-# Welcome to your Expo app 👋
+# Gerald Challenge - React Native App 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a [React Native](https://reactnative.dev) project built with [Expo](https://expo.dev) and [Expo Router](https://docs.expo.dev/router/introduction/) for navigation.
 
-## Get started
+## Demo
+
+![Gerald Challenge App Demo](gerald.gif)
+
+## App Architecture
+
+This app implements a sophisticated navigation structure using **Expo Router** with file-based routing:
+
+### Navigation Structure
+
+```
+Root Layout (Drawer Navigator)
+├── (home) - Home Section
+│   ├── Tab Navigator
+│   │   ├── index - Home Screen
+│   │   ├── cart - Cart Screen
+│   │   └── favourites - Favourites Screen
+│   └── Stack Navigator (Products)
+│       ├── products/index - Products List
+│       └── products/[id] - Product Detail
+└── (orders) - Orders Section
+    └── index - Orders Screen
+```
+
+### Navigation Components
+
+1. **Drawer Navigator** (`app/_layout.tsx`)
+
+   - Main navigation container
+   - Provides side drawer menu
+   - Contains two main sections: Home and Orders
+   - Customizable drawer styling with dark/light theme support
+
+2. **Tab Navigator** (`app/(home)/_layout.tsx`)
+
+   - Located within the Home section
+   - Bottom tab navigation with three tabs:
+     - **Home**: Main landing page
+     - **Cart**: Shopping cart functionality
+     - **Favourites**: Saved items
+   - Uses Ionicons for tab icons
+
+3. **Stack Navigator** (Products)
+   - Nested within the Home section
+   - Handles product-related screens:
+     - **Products List**: `app/(home)/products/index.tsx`
+     - **Product Detail**: `app/(home)/products/[id].tsx` (dynamic routing)
+
+### Key Features
+
+- **File-based Routing**: Uses Expo Router for intuitive navigation structure
+- **Type Safety**: Full TypeScript support with custom type definitions
+- **Theme Support**: Dark/light theme with automatic system detection
+- **Custom Components**: Themed components for consistent UI
+- **Product Management**: Dynamic product routing with parameter passing
+
+## Project Structure
+
+```
+app/
+├── _layout.tsx              # Root drawer navigator
+├── (home)/                  # Home section with tab navigation
+│   ├── _layout.tsx         # Tab navigator configuration
+│   ├── index.tsx           # Home screen
+│   ├── cart.tsx            # Cart screen
+│   ├── favourites.tsx      # Favourites screen
+│   └── products/           # Product stack navigator
+│       ├── index.tsx       # Products list
+│       └── [id].tsx        # Product detail (dynamic)
+└── (orders)/               # Orders section
+    ├── _layout.tsx         # Orders layout
+    └── index.tsx           # Orders screen
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo CLI (`npm install -g @expo/cli`)
+
+### Installation
 
 1. Install dependencies
 
@@ -10,41 +92,33 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+2. Start the development server
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+### Running the App
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+After starting the development server, you can run the app on:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **iOS Simulator**: Press `i` in the terminal or scan the QR code with Expo Go
+- **Android Emulator**: Press `a` in the terminal
+- **Physical Device**: Scan the QR code with the Expo Go app
+- **Web Browser**: Press `w` in the terminal
 
-## Get a fresh project
+## Development
 
-When you're ready, run:
+### Key Directories
 
-```bash
-npm run reset-project
-```
+- `app/`: Main application screens and navigation
+- `components/`: Reusable UI components
+- `constants/`: App constants and data
+- `hooks/`: Custom React hooks
+- `types/`: TypeScript type definitions
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Navigation Patterns
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Drawer Navigation**: Access via swipe gesture or hamburger menu
+- **Tab Navigation**: Bottom tabs for quick access to main features
+- **Stack Navigation**: Push/pop navigation for detailed views
