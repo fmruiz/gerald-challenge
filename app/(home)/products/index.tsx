@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 
+import { ThemedSafeAreaView } from "@/components/ThemedSafeAreaView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { products } from "@/constants/Products";
@@ -26,22 +27,23 @@ export default function ProductsScreen() {
   );
 
   return (
-    <ThemedView style={styles.container}>
-      <FlatList
-        data={products}
-        renderItem={renderProduct}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.listContainer}
-        showsVerticalScrollIndicator={false}
-      />
-    </ThemedView>
+    <ThemedSafeAreaView>
+      <ThemedView style={styles.container}>
+        <FlatList
+          data={products}
+          renderItem={renderProduct}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.listContainer}
+          showsVerticalScrollIndicator={false}
+        />
+      </ThemedView>
+    </ThemedSafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
   },
   title: {
     marginBottom: 20,

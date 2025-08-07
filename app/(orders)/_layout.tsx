@@ -1,3 +1,5 @@
+import DrawerWrapper from "@/components/DrawerWrapper";
+import { ThemedSafeAreaView } from "@/components/ThemedSafeAreaView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Slot } from "expo-router";
@@ -5,12 +7,16 @@ import { StyleSheet } from "react-native";
 
 export default function OrdersLayout() {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="title" style={styles.title}>
-        Orders
-      </ThemedText>
-      <Slot />
-    </ThemedView>
+    <DrawerWrapper>
+      <ThemedSafeAreaView>
+        <ThemedView style={styles.container}>
+          <ThemedText type="title" style={styles.title}>
+            Orders
+          </ThemedText>
+          <Slot />
+        </ThemedView>
+      </ThemedSafeAreaView>
+    </DrawerWrapper>
   );
 }
 
